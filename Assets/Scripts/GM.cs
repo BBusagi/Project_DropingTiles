@@ -14,7 +14,7 @@ public class GM : MonoBehaviour
     public Vector2[] spawnPositions; // 生成位置
 
     // 方块不同属性
-    public int maxNum = 10; // 可以设置的最大数字
+    private int maxNum = 9; // 可以设置的最大数字
     private int index2;
 
 
@@ -47,18 +47,22 @@ public class GM : MonoBehaviour
         if (timeSinceLastSpawn >= spawnInterval)
         {
             List<int> numbers = GenerateNumbers();
-            SpawnBlock();
+            SpawnBlock(numbers);
             timeSinceLastSpawn = 0;
         }
     }
 
-    void SpawnBlock()
+    void SpawnBlock(List<int> numbers)
     {
         // 实例化方块预制体
-        foreach (Vector2 pos in spawnPositions)
+        for (int i = 0; i < spawnPositions.Length; i++)
         {
-            Instantiate(tilesPrefab, pos, Quaternion.identity);
+            Vector2 pos = spawnPositions[i];
+            GameObject tiles = Instantiate(tilesPrefab, pos, Quaternion.identity);
+            Tiles tilesScript = tiles.GetComponent<Tiles>();
+            tilesScript.number = numbers[i];
         }
+
     }
 
     public List<int> GenerateNumbers()
@@ -79,8 +83,8 @@ public class GM : MonoBehaviour
         }
         
         // check
-        // string numsString = string.Join(", ", nums);
-        // Debug.Log(numsString);
+        string numsString = string.Join(", ", nums);
+        Debug.Log(numsString);
 
         return nums;
     }

@@ -1,15 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Tiles : MonoBehaviour
 {
     public float threshold = -10.0f; // 设置边界阈值
+    private TextMeshProUGUI textMeshPro;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        textMeshPro = GetComponentInChildren<TextMeshProUGUI>();
+
+        if (textMeshPro == null)
+        {
+            Debug.LogError("TextMeshProUGUI not found");
+        }
+        else
+        {
+            Debug.Log(textMeshPro.text);
+        }
     }
 
     // Update is called once per frame

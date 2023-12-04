@@ -79,8 +79,8 @@ public class GM : MonoBehaviour
         }
         
         // check
-        string numsString = string.Join(", ", nums);
-        Debug.Log(numsString);
+        // string numsString = string.Join(", ", nums);
+        // Debug.Log(numsString);
 
         return nums;
     }
